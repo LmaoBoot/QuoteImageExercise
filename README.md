@@ -13,4 +13,4 @@ A simple webpage that displays a random quote and a random image, with an option
    ``` 
 ## Usage
 ### Web App
-Simply run the ('app.py') file and open the local url in your browser.
+Simply run the (`app.py`) file and open the local url in your browser.
