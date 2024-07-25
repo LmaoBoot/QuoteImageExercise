@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Quote and Picture</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        async function refreshContent() {
+            const keyInput = document.getElementById('key-input').value;
+            const response = await fetch(`/refresh?key=${keyInput}`);
+            const data = await response.json();
+            document.getElementById('quote').innerText = data.quote;
+            document.getElementById('random-image').src = data.image_url;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Random Quote and Picture</h1>
+        <p id="quote">{{ quote }}</p>
+        <img id="random-image" src="{{ image_url }}" alt="Random Image">
+        <input id="key-input" placeholder="Key (optional)" type="text" maxlength="6" pattern="\d*">
+        <button onclick="refreshContent()">Get New Quote and Picture</button>
+    </div>
+</body>
+</html>
