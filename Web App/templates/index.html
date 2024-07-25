@@ -8,7 +8,8 @@
     <script>
         async function refreshContent() {
             const keyInput = document.getElementById('key-input').value;
-            const response = await fetch(`/refresh?key=${keyInput}`);
+            const grayscale = document.getElementById('grayscale-checkbox').checked;
+            const response = await fetch(`/refresh?key=${keyInput}&grayscale=${grayscale}`);
             const data = await response.json();
             document.getElementById('quote').innerText = data.quote;
             if (data.image_url) {
@@ -29,6 +30,10 @@
         <img id="random-image" src="{{ image_url }}" alt="Random Image" style="display: {{ 'block' if image_url else 'none' }}">
         <p id="image-error" style="color: red; display: {{ 'none' if image_url else 'block' }}">{{ 'Could not retrieve image.' if not image_url else '' }}</p>
         <input id="key-input" placeholder="Key (optional)" type="text" maxlength="6" pattern="\d*">
+        <label>
+            <input id="grayscale-checkbox" type="checkbox">
+            Grayscale
+        </label>
         <button onclick="refreshContent()">Get New Quote and Picture</button>
     </div>
 </body>
