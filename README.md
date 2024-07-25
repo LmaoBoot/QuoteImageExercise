@@ -14,3 +14,11 @@ A simple webpage that displays a random quote and a random image, with an option
 ## Usage
 ### Web App
 Simply run the `Web App/app.py` file and open the local url in your browser.
+
+### CLI
+Run the included `cli.py` file in your command prompt.
+Has an additonal key argument that can influence the quote, max character count of 6.
+
+### APIs used
+http://forismatic.com/en/api/
+https://picsum.photos/
