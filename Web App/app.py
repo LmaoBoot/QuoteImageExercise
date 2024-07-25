@@ -3,10 +3,10 @@ import requests
 
 app = Flask(__name__)
 
-DEFAULT_QUOTE = 'Could not retrieve quote.'
+DEFAULT_QUOTE = '"The only limit to our realization of tomorrow is our doubts of today." - Franklin D. Roosevelt'
 DEFAULT_IMAGE_TEXT = "Could not retrieve image."
 
-def get_data(key=''):
+def get_data(key='', grayscale=False):
     try:
         quote_url = f'https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en'
         if key:
@@ -20,10 +20,15 @@ def get_data(key=''):
         quote_string = DEFAULT_QUOTE
 
     try:
-        image_url = requests.get('https://picsum.photos/300/300').url
+        image_url = 'https://picsum.photos/300/300'
+        if grayscale:
+            image_url += '?grayscale'
+        print(grayscale)
+        image_url = requests.get(image_url).url
     except requests.exceptions.RequestException:
         image_url = None
 
+    
     return {"quote": quote_string, "image_url": image_url}
 
 @app.route('/')
@@ -35,7 +40,8 @@ def index():
 @app.route('/refresh', methods=['GET'])
 def refresh():
     key = request.args.get('key', '')
-    data = get_data(key)
+    grayscale = request.args.get('grayscale', 'false') == 'true'
+    data = get_data(key, grayscale)
     return jsonify({'quote': data['quote'], 'image_url': data['image_url']})
 
 if __name__ == '__main__':
