@@ -20,5 +20,5 @@ Run the included `cli.py` file in your command prompt.
 Has an additonal key argument that can influence the quote, max character count of 6.
 
 ### APIs used
-http://forismatic.com/en/api/
-https://picsum.photos/
+1. http://forismatic.com/en/api/
+2. https://picsum.photos/
