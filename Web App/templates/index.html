@@ -11,7 +11,14 @@
             const response = await fetch(`/refresh?key=${keyInput}`);
             const data = await response.json();
             document.getElementById('quote').innerText = data.quote;
-            document.getElementById('random-image').src = data.image_url;
+            if (data.image_url) {
+                document.getElementById('random-image').src = data.image_url;
+                document.getElementById('random-image').style.display = 'block';
+                document.getElementById('image-error').style.display = 'none';
+            } else {
+                document.getElementById('random-image').style.display = 'none';
+                document.getElementById('image-error').style.display = 'block';
+            }
         }
     </script>
 </head>
@@ -19,7 +26,8 @@
     <div class="container">
         <h1>Random Quote and Picture</h1>
         <p id="quote">{{ quote }}</p>
-        <img id="random-image" src="{{ image_url }}" alt="Random Image">
+        <img id="random-image" src="{{ image_url }}" alt="Random Image" style="display: {{ 'block' if image_url else 'none' }}">
+        <p id="image-error" style="color: red; display: {{ 'none' if image_url else 'block' }}">{{ 'Could not retrieve image.' if not image_url else '' }}</p>
         <input id="key-input" placeholder="Key (optional)" type="text" maxlength="6" pattern="\d*">
         <button onclick="refreshContent()">Get New Quote and Picture</button>
     </div>
