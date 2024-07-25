@@ -17,9 +17,9 @@ Simply run the `Web App/app.py` file and open the local url in your browser.
 
 ### CLI
 Run the included `cli.py` file in your command prompt.
-
-* Insures the image is in grayscale
-* `Key` Specify a key when generating quote
+#### Parameters
+* `--grayscale` Insures the image is in grayscale
+* `--key [number]` Specify a key when generating quote
 
 ## APIs used
 1. http://forismatic.com/en/api/
