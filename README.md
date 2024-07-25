@@ -17,7 +17,9 @@ Simply run the `Web App/app.py` file and open the local url in your browser.
 
 ### CLI
 Run the included `cli.py` file in your command prompt.
-Has an additonal key argument that can influence the quote, max character count of 6.
+<h3>Parameters</h3>
+- `grayscale` Insures the image is in grayscale
+- `Key` Specify a key when generating quote
 
 ## APIs used
 1. http://forismatic.com/en/api/
